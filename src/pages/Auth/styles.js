@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const Wrapper = styled.div`
   background-color: ${(props) => props.theme.colors.backgroundGreyLight};
   min-height: 100vh;
+  min-width: 100%;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -23,12 +24,17 @@ export const Form = styled.div`
 `;
 
 export const Img = styled.img`
+  padding: 10px;
   max-width: 300px;
+  width: 100%;
+  height: auto;
 `;
 
 export const ChangeForm = styled.div`
+  border-radius: 5px;
   margin-top: 10px;
-  width: 400px;
+  width: 100%;
+  max-width: 400px;
   background-color: ${(props) => props.theme.colors.backgroundLight};
   padding: 20px 50px;
   border: 1px solid ${(props) => props.theme.colors.borderGrey};
