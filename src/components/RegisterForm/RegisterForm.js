@@ -3,9 +3,13 @@ import * as S from './style';
 import { Formik, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { useDebouncedCallback } from 'use-debounce';
+import { useMutation } from '@apollo/client';
+import { REGISTER_USER } from '../../gql/user';
 
-const RegisterForm = ({ setShowLogin }) => {
+const RegisterForm = (props) => {
   const debounce = useDebouncedCallback((fn) => fn(), 2000);
+  const { setShowLogin } = props;
+  const [register] = useMutation(REGISTER_USER);
 
   const validation = Yup.object().shape({
     name: Yup.string().required('Nombre es obligatorio!'),
@@ -38,12 +42,24 @@ const RegisterForm = ({ setShowLogin }) => {
           repeatPassword: '',
         }}
         validationSchema={validation}
-        onSubmit={(values, actions, isSubmitting) => {
-          debounce(() => {
-            console.log(values);
+        onSubmit={async (values, actions, isSubmitting) => {
+          // debounce(() => {
+          try {
+            const newUser = values;
+            delete newUser.repeatPassword;
+            const result = await register({
+              variables: {
+                input: newUser,
+              },
+            });
+
+            console.log(result);
             actions.resetForm({});
             actions.setSubmitting(false);
-          });
+          } catch (error) {
+            console.log(error.message);
+          }
+          // });
         }}
       >
         {({
