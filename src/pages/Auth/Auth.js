@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import instaclone from '../../assets/images/instaclone.png';
+import LoginForm from '../../components/LoginForm/LoginForm';
 import RegisterForm from '../../components/RegisterForm/RegisterForm';
 import * as S from './styles';
 
@@ -10,7 +11,7 @@ const Auth = () => {
       <S.Img src={instaclone} />
       <S.Form>
         {showLogin ? (
-          <p>Formulario de Login</p>
+          <LoginForm />
         ) : (
           <RegisterForm setShowLogin={setShowLogin} />
         )}

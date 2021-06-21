@@ -4,6 +4,7 @@ import GlobalStyle from './theme/GlobalStyles';
 import { ThemeProvider } from 'styled-components';
 import App from './App';
 import Theme from './theme/Theme';
+import 'react-toastify/dist/ReactToastify.css';
 
 ReactDOM.render(
   <React.StrictMode>
